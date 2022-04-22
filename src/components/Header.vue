@@ -1,6 +1,6 @@
 <template>
     <!-- Header -->
-<section id="header">
+<section id="header" v-bind:class="{active:isActive}">
     <div class="header container">
       <div class="nav-bar">
         <div class="brand">
@@ -12,7 +12,7 @@
           <div class="hamburger" @click="openMobileNav">
             <div class="bar"></div>
           </div>
-          <ul>
+          <ul :class="{active:isActive}">
             <li><a href="/" >Home</a></li>
             <li><a href="/Service" >Services</a></li>
             <li><a href="/Projets" >Projets</a></li>
@@ -76,16 +76,13 @@ export default {
     name: 'header-app',
     data(){
       return{
-        
+        isActive: "active",
       }
     },
     
     method:{
-        openMobileNav(){
-          const hamburger = document.querySelector('.hamburger');
-          const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
-  hamburger.classList.toggle('active')
-	mobile_menu.classList.toggle('active')
+       openMobileNav:function(){
+          this.isActive = true;
         }
     },
 }
